@@ -46,7 +46,7 @@ git clone <b>Project_URL</b>
 #### Get item
 
 ```http
-  GET /api/items/${id}
+  GET /api/animeScore/${id}
 ```
 
 | Parameter | Type     | Description                       |
