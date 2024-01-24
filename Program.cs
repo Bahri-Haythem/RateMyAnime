@@ -9,6 +9,7 @@ builder.Services.AddSingleton<IDataService, DataService>();
 //https://medium.com/@dozieogbo/a-better-way-to-inject-appsettings-in-asp-net-core-96be36ffa22b
 //check link for more infos
 Settings settings = new();
+
 builder.Configuration.GetSection("Settings").Bind(settings);
 builder.Services.AddSingleton(settings);
 
