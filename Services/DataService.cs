@@ -40,13 +40,21 @@ public class DataService : IDataService
 
         var client = new RestClient(baseUrl);
         var request = new RestRequest("random/anime");
-        double score;
-        Random random;
+        double score = 0;
+        Random random = new Random();
         do
         {
-            random = await client.GetAsync<Random>(request);
-            await Task.Delay(500);
-            score = await GetScoreFromEpisodesAsync(random.data.Id);
+            try
+            {
+                random = await client.GetAsync<Random>(request);
+                await Task.Delay(500);
+                score = await GetScoreFromEpisodesAsync(random.data.Id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
         } while (score == 0);
         return new Result { Name = random.data.title, Score = score };
     }
